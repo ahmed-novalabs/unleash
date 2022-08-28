@@ -28,7 +28,7 @@ const useUiConfig = (): IUseUIConfigOutput => {
             flags: { ...defaultValue.flags, ...data?.flags },
         };
     }, [data]);
-
+    
     return {
         uiConfig,
         loading: !error && !data,

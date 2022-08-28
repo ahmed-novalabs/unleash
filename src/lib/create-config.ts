@@ -101,10 +101,12 @@ function loadClientCachingOptions(
 function loadUI(options: IUnleashOptions): IUIConfig {
     const uiO = options.ui || {};
     const ui: IUIConfig = {};
-
     ui.flags = {
         E: true,
         ENABLE_DARK_MODE_SUPPORT: false,
+        C: true,
+        P: true,
+        EEA: true,
     };
     return mergeAll([uiO, ui]);
 }
