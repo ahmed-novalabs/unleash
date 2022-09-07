@@ -105,11 +105,16 @@ export const ReportTable = ({ projectId, features }: IReportTableProps) => {
         setHiddenColumns(hiddenColumns);
     }, [setHiddenColumns, isSmallScreen, isMediumScreen, isExtraSmallScreen]);
 
+    const title =
+        rows.length < data.length
+            ? `Feature toggles (${rows.length} of ${data.length})`
+            : `Feature toggles (${data.length})`;
+
     return (
         <PageContent
             header={
                 <PageHeader
-                    titleElement="Overview"
+                    title={title}
                     actions={
                         <Search
                             initialValue={globalFilter}
@@ -194,6 +199,7 @@ const COLUMNS = [
     {
         Header: 'Status',
         id: 'status',
+        accessor: 'status',
         Cell: ReportStatusCell,
         disableGlobalFilter: true,
         width: 180,

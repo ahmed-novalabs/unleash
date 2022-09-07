@@ -101,6 +101,7 @@ export const FeatureStrategyEmpty = ({
                 parameters: {
                     rollout: '50',
                     stickiness: 'default',
+                    groupId: feature.name,
                 },
                 constraints: [],
             });
@@ -109,6 +110,9 @@ export const FeatureStrategyEmpty = ({
             setToastApiError(formatUnknownError(error));
         }
     };
+
+    const canCopyFromOtherEnvironment =
+        otherAvailableEnvironments && otherAvailableEnvironments.length > 0;
 
     return (
         <div className={styles.container}>
@@ -136,12 +140,10 @@ export const FeatureStrategyEmpty = ({
                     projectId={projectId}
                     featureId={featureId}
                     environmentId={environmentId}
+                    matchWidth={canCopyFromOtherEnvironment}
                 />
                 <ConditionallyRender
-                    condition={
-                        otherAvailableEnvironments &&
-                        otherAvailableEnvironments.length > 0
-                    }
+                    condition={canCopyFromOtherEnvironment}
                     show={
                         <CopyButton
                             environmentId={environmentId}
